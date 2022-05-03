@@ -16,7 +16,7 @@ public class Element {
 		return "Element [type=" + type + "]";
 	}
 
-	private ElementType getType() {
+	public ElementType getType() {
 		return type;
 	}
 

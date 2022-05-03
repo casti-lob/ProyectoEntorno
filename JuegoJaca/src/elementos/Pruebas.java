@@ -6,11 +6,9 @@ public class Pruebas {
 
 	public static void main(String[] args) {
 		
-		for(int i=0;i<1000;i++) {
-			
-			Coordenada c = new Coordenada();
-			System.out.println(c);
-		}
+		Element e = new Element(ElementType.ROCA);
+		
+		System.out.println(e.getType());
 		
 	}
 
