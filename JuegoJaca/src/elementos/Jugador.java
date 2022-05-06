@@ -8,9 +8,10 @@ public class Jugador extends Element {
 	private int gemas;
 	private PlayerType player;
 	
-	public Jugador(ElementType type, PlayerType player) {
-		super(type);
+	public Jugador(PlayerType player) {
+		super(ElementType.valueOf(player.name()));
 		this.player = player;
+		
 	}
 	
 	public String getNombre() {
@@ -33,7 +34,8 @@ public class Jugador extends Element {
 		return player.getVelocidad();
 	}
 	public int getVelocidadParaLuchar() {
-		return (int)Math.round(Math.random()*player.getVelocidad()+1);
+		return (int)Math.round(Math.random()*player.getVelocidad()+1);//Entre 1 y la constante velocidad
+		
 	}
 
 	public int getDinero() {
@@ -76,7 +78,7 @@ public class Jugador extends Element {
 		return player;
 	}
 	
-	public int lucha(Jugador enemigo) throws JugadorException {
+	public int lucha(Jugador enemigo) throws JugadorException { //Revisar 
 		int resultado=0;
 		if(getFuerzaParaLuchar()==enemigo.getFuerzaParaLuchar()) {
 			resultado=Constantes.EMPATE;
@@ -109,7 +111,7 @@ public class Jugador extends Element {
 		if(getGemas()>0) {
 			resultado= Constantes.ROMPE_ROCA_CON_GEMA;
 			setGemas(-1);
-			//No se como colocar al jugador en la posición de la roca
+			//No se como colocar al jugador en la posiciï¿½n de la roca
 		}else if(getMagiaParaLuchar()>4) {
 			resultado= Constantes.GANA_A_LA_ROCA;
 		}else {

@@ -27,14 +27,14 @@ public class Coordenada {
 	private void generarCoordenadaX() {
 		int coordenadaX; 
 		r = new Random();
-		coordenadaX= r.nextInt(0,Constantes.TAMANNO);
+		coordenadaX= r.nextInt(Constantes.TAMANNO);
 		this.x= coordenadaX;
 	}
 	
 	private void generarCoordenadaY() {
 		int coordenadaY; 
 		r = new Random();
-		coordenadaY= r.nextInt(0,Constantes.TAMANNO);
+		coordenadaY= r.nextInt(Constantes.TAMANNO);
 		this.y= coordenadaY;
 	}
 	public int getX() {
@@ -43,14 +43,14 @@ public class Coordenada {
 	public int getY() {
 		return y;
 	}
-	private void setX(int x) throws CoordenadaException {
-		if(x<0||x>9) {
+	private void setX(int x) throws CoordenadaException {//Revisar
+		if(x<0||x>Constantes.TAMANNO-1) {
 			throw new CoordenadaException("La coordenada x no puede ser menor a 0 o meyor a 9");
 		}
 		this.x = x;
 	}
-	private void setY(int y) throws CoordenadaException {
-		if(y<0||y>9) {
+	private void setY(int y) throws CoordenadaException { //Revisar
+		if(y<0||y>Constantes.TAMANNO-1) {
 			throw new CoordenadaException("La coordenada y no puede ser menor a 0 o meyor a 9");
 		}
 		this.y = y;
