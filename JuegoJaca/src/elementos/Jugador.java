@@ -80,22 +80,25 @@ public class Jugador extends Element {
 	
 	public int lucha(Jugador enemigo) throws JugadorException { //Revisar 
 		int resultado=0;
-		if(getFuerzaParaLuchar()==enemigo.getFuerzaParaLuchar()) {
+		int fuerzaJugador= getFuerzaParaLuchar();
+		int fuerzaEnemigo= enemigo.getFuerzaParaLuchar();
+		
+		if(fuerzaJugador==fuerzaEnemigo) {
 			resultado=Constantes.EMPATE;
 			
-		}else if(getFuerzaParaLuchar()>enemigo.getFuerzaParaLuchar()&& enemigo.getPociones()>0) {
+		}else if(fuerzaJugador>fuerzaEnemigo&& enemigo.getPociones()>0) {
 			resultado = Constantes.GANA_USA_POCIMA;
 			enemigo.setPociones(-1);
-		}else if(getFuerzaParaLuchar()>enemigo.getFuerzaParaLuchar()&& enemigo.getDinero()>0) {
+		}else if(fuerzaJugador>fuerzaEnemigo&& enemigo.getDinero()>0) {
 			resultado =Constantes.GANA_DINERO;
 			enemigo.setDinero(-getDinero());
-		}else if(getFuerzaParaLuchar()>enemigo.getFuerzaParaLuchar()) {
+		}else if(fuerzaJugador>fuerzaEnemigo) {
 			resultado= Constantes.GANA_MUERE;
 			//Preguntar si hay que hacer algo al enemigo para que aparezca muerto
-		}else if(getFuerzaParaLuchar()<enemigo.getFuerzaParaLuchar()&&getPociones()>0) {
+		}else if(fuerzaJugador<fuerzaEnemigo&&getPociones()>0) {
 			resultado=Constantes.PIERDE_USA_POCIMA;
 			this.setPociones(-1);
-		}else if(getFuerzaParaLuchar()<enemigo.getFuerzaParaLuchar()&& getDinero()>0) {
+		}else if(fuerzaJugador<fuerzaEnemigo&& getDinero()>0) {
 			resultado= Constantes.PIERDE_DINERO;
 			this.setDinero(-getDinero());
 		}else {

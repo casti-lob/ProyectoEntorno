@@ -12,7 +12,66 @@ public class Juego {
 	private ArrayList<Coordenada> coordenadaJugadores;
 	private int jugadorJuega;
 	private int dado; // Dado para ver los movimientos del jugador que juega
+	private Jugador[] jugadores =new Jugador[Constantes.NUM_JUGADORES];
 
+	public Juego(Jugador[] jugadores) {//Preguntar por la exception
+		super();
+		this.jugadores = jugadores;
+	}
+	
+	private void crearTablero() {//preguntar
+		crearDinero();
+		crearGemas();
+		crearPociones();
+		crearRocas();
+	}
+	
+	private void crearRocas() {
+		for(int i =0;i<Constantes.NUM_ROCAS;i++) {
+			Coordenada c = new Coordenada();
+			Element r = new Element(ElementType.ROCA);
+			tablero.put(c, r); 
+		}
+	}
+	
+	private boolean crearJugador(PlayerType type) {
+		boolean creado = false;
+		Jugador j = new Jugador(type);
+		for(int i=0;i<jugadores.length&&!creado;i++) {
+			if(jugadores[i]==null) {
+				jugadores[i]=j;
+				creado= true;
+			}
+		}
+		return creado;
+	}
+	
+	private void crearGemas() {
+		for(int i =0;i<Constantes.NUM_GEMAS;i++) {
+			Coordenada c = new Coordenada();
+			Element r = new Element(ElementType.GEMA);
+			tablero.put(c, r); 
+		}
+	}
+	
+	private void crearPociones() {
+		for(int i =0;i<Constantes.NUM_POCIONES;i++) {
+			Coordenada c = new Coordenada();
+			Element r = new Element(ElementType.POCION);
+			tablero.put(c, r); 
+		}
+	}
+	
+	private void crearDinero() {
+		for(int i =0;i<Constantes.NUM_DINERO;i++) {
+			Coordenada c = new Coordenada();
+			Element r = new Element(ElementType.DINERO);
+			tablero.put(c, r); 
+		}
+	}
+	
+	
+	
 
 	/**
 	 * Escribe el tablero en formato no grÃ¡fico. Devuelve el string con la
@@ -44,7 +103,46 @@ public class Juego {
 		return resul.toString();
 	}
 
-
+	public boolean isTerminado() {
+		boolean terminado= false;
+		int numeroJugadores= Constantes.NUM_JUGADORES;
+		for(int i=0;i<jugadores.length&&!terminado;i++) {
+			if(jugadores[i].getDinero()==Constantes.NUM_DINERO) {
+				terminado= true;
+			}else if(jugadores[i]==null) {
+				numeroJugadores-=1;//Si se ha eliminado al jugador se resta para saber cuantos jugadores estan en activo
+			}
+		}
+		if(numeroJugadores==1) {
+			terminado= true;
+		}
+		return terminado;
+	}
+	
+	public String imprimeNombreJugadores() {
+		StringBuilder nombres= new StringBuilder();
+		for(int i =0;i<jugadores.length;i++) {
+			if(jugadores[i]!=null) {
+				nombres.append("El jugador "+i+"es un "+jugadores[i].getType()+" ");
+			}
+		}
+		return nombres.toString();
+	}
+	
+	public String imprimeValoreJugadores() {
+		StringBuilder nombres= new StringBuilder();
+		for(int i =0;i<jugadores.length;i++) {
+			if(jugadores[i]!=null) {
+				nombres.append("El jugador "+i+"es un "+jugadores[i].resume()+" ");
+			}
+		}
+		return nombres.toString();
+	}
+	
+	private void eliminarJugador(Coordenada coord) {//Pòr hacer
+		
+	}
+	
 	/**
 	 * Simplemente escribe una barra en pantalla
 	 * 
@@ -59,7 +157,12 @@ public class Juego {
 		resul.append("\n");
 		return resul.toString();
 	}
-
+	private Coordenada getNextPositionCoordenada (char direccion) throws JuegoException {
+		
+		if(direccion!='N'&& direccion!='S'&& direccion!='E'&& direccion!='O') {
+			throw new JuegoException("No se aceptan estos valores");
+		}
+	}
 
 	/**
 	 * Mover el jugador

@@ -8,7 +8,9 @@ public class Pruebas {
 		Coordenada c = new Coordenada();
 		System.out.println(c);
 		Element e = new Element(ElementType.ROCA);
+		String[] lista = new String[10];
 		
+		System.out.println(lista.length);
 		System.out.println(e.getType());
 		
 	}

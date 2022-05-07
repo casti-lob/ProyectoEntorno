@@ -18,7 +18,7 @@ public class Coordenada {
 		this.generarCoordenadaX();
 		this.generarCoordenadaY();
 	}
-	public Coordenada(int x, int y) throws CoordenadaException {
+	public Coordenada(int x, int y) {
 		super();
 		this.setX(x);
 		this.setY(y);
@@ -43,15 +43,15 @@ public class Coordenada {
 	public int getY() {
 		return y;
 	}
-	private void setX(int x) throws CoordenadaException {//Revisar
+	private void setX(int x) {//Modificar junit
 		if(x<0||x>Constantes.TAMANNO-1) {
-			throw new CoordenadaException("La coordenada x no puede ser menor a 0 o meyor a 9");
+			this.x=0;
 		}
 		this.x = x;
 	}
-	private void setY(int y) throws CoordenadaException { //Revisar
+	private void setY(int y) { //Modificar junit
 		if(y<0||y>Constantes.TAMANNO-1) {
-			throw new CoordenadaException("La coordenada y no puede ser menor a 0 o meyor a 9");
+			this.y=0;
 		}
 		this.y = y;
 	}
@@ -114,12 +114,10 @@ public class Coordenada {
 	
 	public Coordenada clone() {
 		Coordenada c = null;
-		try {
+		
 			c = new Coordenada(this.x,this.y);
 			
-		} catch (CoordenadaException e) {
-			System.out.println("Error al clonar la coordenada");
-		}
+		
 		return c;
 		
 	}
