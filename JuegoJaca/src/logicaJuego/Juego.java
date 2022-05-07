@@ -158,9 +158,18 @@ public class Juego {
 		return resul.toString();
 	}
 	private Coordenada getNextPositionCoordenada (char direccion) throws JuegoException {
-		
+		Coordenada c;
 		if(direccion!='N'&& direccion!='S'&& direccion!='E'&& direccion!='O') {
 			throw new JuegoException("No se aceptan estos valores");
+		}
+		
+		switch (direccion) {
+		case 'N': {
+			c = ne
+			breack;
+		}
+		default:
+			throw new IllegalArgumentException("Unexpected value: " + direccion);
 		}
 	}
 
