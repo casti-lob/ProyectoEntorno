@@ -45,13 +45,13 @@ public class Coordenada {
 	}
 	private void setX(int x) {//Modificar junit
 		if(x<0||x>Constantes.TAMANNO-1) {
-			this.x=0;
+			x=0;
 		}
 		this.x = x;
 	}
 	private void setY(int y) { //Modificar junit
 		if(y<0||y>Constantes.TAMANNO-1) {
-			this.y=0;
+			y=0;
 		}
 		this.y = y;
 	}
@@ -77,7 +77,7 @@ public class Coordenada {
 	
 	public boolean goRight() {
 		boolean movimiento = false;
-		if(this.x+1<Constantes.TAMANNO) {
+		if(this.x<Constantes.TAMANNO-1) {
 			this.x+=1;
 			movimiento= true;
 		}
@@ -86,7 +86,7 @@ public class Coordenada {
 	
 	public boolean goLeft() {
 		boolean movimiento = false;
-		if(this.x!=1) {
+		if(this.x!=0) {
 			this.x-=1;
 			movimiento= true;
 		}
@@ -96,7 +96,7 @@ public class Coordenada {
 	
 	public boolean goUp() {
 		boolean movimiento = false;
-		if(this.y!=1) {
+		if(this.y!=0) {
 			this.y-=1;
 			movimiento= true;
 		}
@@ -105,7 +105,7 @@ public class Coordenada {
 	
 	public boolean goDown() {
 		boolean movimiento = false;
-		if(this.y+1<Constantes.TAMANNO) {
+		if(this.y<Constantes.TAMANNO-1) {
 			this.y+=1;
 			movimiento= true;
 		}

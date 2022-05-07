@@ -1,5 +1,7 @@
 package elementos;
 
+import java.util.Random;
+
 import logicaJuego.Constantes;
 
 public class Jugador extends Element {
@@ -7,6 +9,7 @@ public class Jugador extends Element {
 	private int pocion;
 	private int gemas;
 	private PlayerType player;
+	private Random r;
 	
 	public Jugador(PlayerType player) {
 		super(ElementType.valueOf(player.name()));
@@ -19,7 +22,8 @@ public class Jugador extends Element {
 	}
 	
 	public int getFuerzaParaLuchar() {
-		return (int) Math.round(Math.random()*player.getFuerza()+1);
+		r = new Random();
+		return r.nextInt(player.getFuerza());
 	}
 	private int getFuerza() {
 		return player.getFuerza();
@@ -28,13 +32,15 @@ public class Jugador extends Element {
 		return player.getMagia();
 	}
 	public int getMagiaParaLuchar() {
-		return (int)Math.round(Math.random()*player.getMagia()+1);
+		r= new Random();
+		return r.nextInt(player.getMagia());
 	}
 	private int getVelocidad() {
 		return player.getVelocidad();
 	}
 	public int getVelocidadParaLuchar() {
-		return (int)Math.round(Math.random()*player.getVelocidad()+1);//Entre 1 y la constante velocidad
+		r = new Random();
+		return r.nextInt(player.getVelocidad());
 		
 	}
 
@@ -67,7 +73,7 @@ public class Jugador extends Element {
 		if(gema > Constantes.NUM_GEMAS) {
 			throw new JugadorException("Esa cantidad de gemas es mayor al maximo");
 		}
-		this.gemas+=gemas;
+		this.gemas+=gema;
 	}
 	
 	public String resume() {
@@ -94,7 +100,7 @@ public class Jugador extends Element {
 			enemigo.setDinero(-getDinero());
 		}else if(fuerzaJugador>fuerzaEnemigo) {
 			resultado= Constantes.GANA_MUERE;
-			//Preguntar si hay que hacer algo al enemigo para que aparezca muerto
+			
 		}else if(fuerzaJugador<fuerzaEnemigo&&getPociones()>0) {
 			resultado=Constantes.PIERDE_USA_POCIMA;
 			this.setPociones(-1);
@@ -103,7 +109,7 @@ public class Jugador extends Element {
 			this.setDinero(-getDinero());
 		}else {
 			resultado= Constantes.PIERDE_MUERE;
-			//Preguntar si hay que hacer algo al enemigo para que aparezca muerto
+			
 		}
 		
 		return resultado;

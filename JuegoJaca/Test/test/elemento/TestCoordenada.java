@@ -11,42 +11,29 @@ class TestCoordenada {
 	
 	@Test
 	public void coordenadaXSuperior() {
-		try {
+		
 			Coordenada c = new Coordenada(10, 0);
-			fail("Error, debería haber lanzado una exception");
-		} catch (CoordenadaException e) {
-			System.out.println("Coordenada x superior a lo permitido");
-		}
+			assertEquals(0, c.getX());
+			
+		
 		
 	}
 	@Test
 	public void coordenadaXInferior() {
-		try {
-			Coordenada c = new Coordenada(-1, 0);
-			fail("Error, debería haber lanzado una exception");
-		} catch (CoordenadaException e) {
-			System.out.println("Coordenada x superior a lo permitido");
-		}
+		Coordenada c = new Coordenada(-1, 0);
+		assertEquals(0, c.getX());
 	}
 	
 	@Test
 	public void coordenadaYSuperior() {
-		try {
-			Coordenada c = new Coordenada(0, 10);
-			fail("Error, debería haber lanzado una exception");
-		} catch (CoordenadaException e) {
-			System.out.println("Coordenada x superior a lo permitido");
-		}
+		Coordenada c = new Coordenada(10, 0);
+		assertEquals(0, c.getY());
 	}
 	
 	@Test
 	public void coordenadaYInferior() {
-		try {
-			Coordenada c = new Coordenada(0, -1);
-			fail("Error, debería haber lanzado una exception");
-		} catch (CoordenadaException e) {
-			System.out.println("Coordenada x superior a lo permitido");
-		}
+		Coordenada c = new Coordenada(-1, 0);
+		assertEquals(0, c.getY());
 	}
 	
 	@Test
@@ -65,5 +52,51 @@ class TestCoordenada {
 		Coordenada c = new Coordenada();
 		Coordenada clon = c.clone();
 		assertNotSame(c, clon);
+	}
+	
+	@Test
+	public void subirPosicion() {
+		Coordenada c = new Coordenada(5, 5);
+		assertTrue(c.goUp());
+	}
+	
+	@Test
+	public void salirsePorArriba() {
+		Coordenada c = new Coordenada(5, 0);
+		assertFalse(c.goUp());
+	}
+	
+	@Test
+	public void bajarPosicion() {
+		Coordenada c = new Coordenada(5, 5);
+		assertTrue(c.goDown());
+	}
+	
+	@Test
+	public void salirsePorAbajo() {
+		Coordenada c = new Coordenada(5, 9);
+		assertFalse(c.goDown());
+	}
+	
+	@Test
+	public void moverDerecha() {
+		Coordenada c = new Coordenada(5, 5);
+		assertTrue(c.goRight());
+	}
+	@Test
+	public void salirseDerecha() {
+		Coordenada c = new Coordenada(9, 5);
+		assertFalse(c.goRight());
+	}
+	
+	@Test
+	public void moverIzquierda() {
+		Coordenada c = new Coordenada(5, 5);
+		assertTrue(c.goLeft());
+	}
+	@Test
+	public void salirseIzquierda() {
+		Coordenada c = new Coordenada(0, 5);
+		assertFalse(c.goLeft());
 	}
 }
