@@ -12,11 +12,10 @@ public class Juego {
 	private ArrayList<Coordenada> coordenadaJugadores;
 	private int jugadorJuega;
 	private int dado; // Dado para ver los movimientos del jugador que juega
-	private Jugador[] jugadores =new Jugador[Constantes.NUM_JUGADORES];
 
 	public Juego(Jugador[] jugadores) {//Preguntar por la exception
 		super();
-		this.jugadores = jugadores;
+		
 	}
 	
 	private void crearTablero() {//preguntar
@@ -29,6 +28,9 @@ public class Juego {
 	private void crearRocas() {
 		for(int i =0;i<Constantes.NUM_ROCAS;i++) {
 			Coordenada c = new Coordenada();
+			while(tablero.containsKey(c)) {
+				c=new Coordenada();
+			}
 			Element r = new Element(ElementType.ROCA);
 			tablero.put(c, r); 
 		}
@@ -37,18 +39,21 @@ public class Juego {
 	private boolean crearJugador(PlayerType type) {
 		boolean creado = false;
 		Jugador j = new Jugador(type);
-		for(int i=0;i<jugadores.length&&!creado;i++) {
-			if(jugadores[i]==null) {
-				jugadores[i]=j;
-				creado= true;
-			}
+		Coordenada c =new Coordenada();
+		while(coordenadaJugadores.contains(c)&& tablero.containsKey(c)) {//Copruebo si ya esta ocupado la coordenada
+			c =new Coordenada();
 		}
+		coordenadaJugadores.add(c);
+		tablero.put(c, j);
 		return creado;
 	}
 	
 	private void crearGemas() {
 		for(int i =0;i<Constantes.NUM_GEMAS;i++) {
 			Coordenada c = new Coordenada();
+			while(tablero.containsKey(c)) {
+				c=new Coordenada();
+			}
 			Element r = new Element(ElementType.GEMA);
 			tablero.put(c, r); 
 		}
@@ -57,6 +62,9 @@ public class Juego {
 	private void crearPociones() {
 		for(int i =0;i<Constantes.NUM_POCIONES;i++) {
 			Coordenada c = new Coordenada();
+			while(tablero.containsKey(c)) {
+				c=new Coordenada();
+			}
 			Element r = new Element(ElementType.POCION);
 			tablero.put(c, r); 
 		}
@@ -65,6 +73,9 @@ public class Juego {
 	private void crearDinero() {
 		for(int i =0;i<Constantes.NUM_DINERO;i++) {
 			Coordenada c = new Coordenada();
+			while(tablero.containsKey(c)) {
+				c=new Coordenada();
+			}
 			Element r = new Element(ElementType.DINERO);
 			tablero.put(c, r); 
 		}
@@ -105,42 +116,49 @@ public class Juego {
 
 	public boolean isTerminado() {
 		boolean terminado= false;
-		int numeroJugadores= Constantes.NUM_JUGADORES;
-		for(int i=0;i<jugadores.length&&!terminado;i++) {
-			if(jugadores[i].getDinero()==Constantes.NUM_DINERO) {
-				terminado= true;
-			}else if(jugadores[i]==null) {
-				numeroJugadores-=1;//Si se ha eliminado al jugador se resta para saber cuantos jugadores estan en activo
-			}
-		}
-		if(numeroJugadores==1) {
+		if(coordenadaJugadores.size()==1) {
 			terminado= true;
+		}
+		for(Coordenada i:coordenadaJugadores) {
+			if(tablero.get(i) != null) {
+				Jugador j = (Jugador) this.tablero.get(i);
+				if(j.getDinero()== Constantes.NUM_DINERO) {
+					terminado= true;
+				}
+			}
 		}
 		return terminado;
 	}
 	
 	public String imprimeNombreJugadores() {
 		StringBuilder nombres= new StringBuilder();
-		for(int i =0;i<jugadores.length;i++) {
-			if(jugadores[i]!=null) {
-				nombres.append("El jugador "+i+"es un "+jugadores[i].getType()+" ");
+		int contador =0;
+		for(Coordenada i:coordenadaJugadores) {
+			if(tablero.containsKey(i)) {
+				contador+=1;
+				Jugador j = (Jugador) tablero.get(i);
+				nombres.append("El jugador "+contador+" es un "+j.getNombre());
 			}
 		}
 		return nombres.toString();
 	}
 	
 	public String imprimeValoreJugadores() {
-		StringBuilder nombres= new StringBuilder();
-		for(int i =0;i<jugadores.length;i++) {
-			if(jugadores[i]!=null) {
-				nombres.append("El jugador "+i+"es un "+jugadores[i].resume()+" ");
+		StringBuilder valores= new StringBuilder();
+		
+		for(Coordenada i:coordenadaJugadores) {
+			if(tablero.containsKey(i)) {
+				
+				Jugador j = (Jugador) tablero.get(i);
+				valores.append(j.getNombre());
 			}
 		}
-		return nombres.toString();
+		return valores.toString();
 	}
 	
-	private void eliminarJugador(Coordenada coord) {//Pòr hacer
-		
+	private void eliminarJugador(Coordenada coord) {
+		coordenadaJugadores.remove(coord);
+		tablero.remove(coord);
 	}
 	
 	/**
@@ -157,22 +175,43 @@ public class Juego {
 		resul.append("\n");
 		return resul.toString();
 	}
-	private Coordenada getNextPositionCoordenada (char direccion) throws JuegoException {
-		Coordenada c;
+	private Coordenada getNextPosition (char direccion) throws JuegoException {
+		Coordenada c = coordenadaJugadores.get(jugadorJuega);
+		c.clone();
 		if(direccion!='N'&& direccion!='S'&& direccion!='E'&& direccion!='O') {
 			throw new JuegoException("No se aceptan estos valores");
 		}
 		
 		switch (direccion) {
 		case 'N': {
-			c = ne
-			breack;
+			c.goUp();
+			break;
+		}case 'S': {
+			c.goDown();
+			break;
+		}case 'E': {
+			c.goRight();
+			break;
+		}case 'O': {
+			c.goLeft();
+			break;
 		}
 		default:
-			throw new IllegalArgumentException("Unexpected value: " + direccion);
+			throw new JuegoException("Error inesperado");
 		}
+		return c;
 	}
 
+	private void cambiaJugadorAPosicion(Coordenada coord) {
+		Coordenada c = coordenadaJugadores.get(jugadorJuega);//Sacamos la coordenada del jugador
+		coordenadaJugadores.remove(jugadorJuega);//Eliminamos la coordenada del jugador
+		coordenadaJugadores.add(jugadorJuega, coord);//Colocamos la nueva coordenada del jugador en su misma posición
+		Jugador j = (Jugador) tablero.get(c);//Obtenemos el jugador del mapa
+		tablero.remove(c);//Eliminamos el registro del mapa
+		tablero.put(coord, j);//Introducimos el jugador con la nueva coordenada
+		
+	}
+	
 	/**
 	 * Mover el jugador
 	 * 
@@ -267,5 +306,59 @@ public class Juego {
 		return resul;
 	}
 
+	public void proximoJugador() {
+		if(this.jugadorJuega== Constantes.NUM_JUGADORES-1) {
+			jugadorJuega=0;
+		}else {
+			jugadorJuega+=1;
+		}
+	}
 	
+	public String getGanador() {
+		String ganador="";
+		Jugador j ;
+		if(coordenadaJugadores.size()==1) {
+			Coordenada c = coordenadaJugadores.get(0);
+			j = (Jugador) tablero.get(c);
+			ganador = j.resume();
+		}
+		for(Coordenada i: coordenadaJugadores) {
+			j= (Jugador) tablero.get(i);
+			if(j.getDinero()==Constantes.NUM_DINERO) {
+				ganador=j.resume();
+			}
+		}
+		return ganador;
+	}
+	public String getNombreJuegadorQueJuega() {
+		Coordenada c = coordenadaJugadores.get(jugadorJuega);
+		Jugador j = (Jugador) tablero.get(c);
+		return j.getNombre();
+	}
+	
+	public int getMovimientoJugador(){//Puede que se tenga que generar velocidad
+		
+	}
+	
+	public int getValorDado() {
+		return dado;
+	}
+	
+	public void decrementaDado() {
+		this.dado -=1;
+	}
+	
+	public void setDado() {
+		Coordenada c = coordenadaJugadores.get(jugadorJuega);
+		Jugador j = (Jugador) tablero.get(c);
+		this.dado = j.getVelocidadParaLuchar();
+	}
+	
+	public Element obtenerElementoTablero(Coordenada coord) {
+		return tablero.get(coord);
+	}
+	
+	public Coordenada obtenerCoordenadaJugadorJuega() {
+		return coordenadaJugadores.get(jugadorJuega);
+	}
 }

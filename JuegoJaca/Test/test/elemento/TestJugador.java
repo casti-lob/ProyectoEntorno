@@ -304,7 +304,7 @@ class TestJugador {
 	void encuentraPocion() {
 		Jugador j = new Jugador(PlayerType.OGRO);
 		try {
-			j.encuentraProcion();
+			j.encuentraPocion();
 			assertEquals(1, j.getPociones());
 		} catch (JugadorException e) {
 			

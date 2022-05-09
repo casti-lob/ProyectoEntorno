@@ -133,7 +133,7 @@ public class Jugador extends Element {
 		setDinero(1);
 	}
 	
-	public void encuentraProcion() throws JugadorException {
+	public void encuentraPocion() throws JugadorException {
 		setPociones(1);
 	}
 	
