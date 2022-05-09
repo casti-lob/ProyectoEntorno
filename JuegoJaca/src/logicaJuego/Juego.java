@@ -13,7 +13,7 @@ public class Juego {
 	private int jugadorJuega;
 	private int dado; // Dado para ver los movimientos del jugador que juega
 
-	public Juego(Jugador[] jugadores) {//Preguntar por la exception
+	public Juego(PlayerType[] jugadores) {//Preguntar por la exception
 		super();
 		
 	}
@@ -337,7 +337,9 @@ public class Juego {
 	}
 	
 	public int getMovimientoJugador(){//Puede que se tenga que generar velocidad
-		
+		Coordenada c = coordenadaJugadores.get(jugadorJuega);
+		Jugador j = (Jugador) tablero.get(c);
+		return j.getVelocidadParaLuchar();
 	}
 	
 	public int getValorDado() {
