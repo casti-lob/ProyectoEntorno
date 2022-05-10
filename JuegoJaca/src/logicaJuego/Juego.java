@@ -15,6 +15,12 @@ public class Juego {
 
 	public Juego(PlayerType[] jugadores) {//Preguntar por la exception
 		super();
+		tablero= new HashMap<>();
+		coordenadaJugadores = new ArrayList<>();
+		crearTablero();
+		for(int i=0;i< Constantes.NUM_JUGADORES;i++){
+			crearJugador(jugadores[i]);
+		}
 		
 	}
 	
@@ -45,6 +51,7 @@ public class Juego {
 		}
 		coordenadaJugadores.add(c);
 		tablero.put(c, j);
+		creado = true;
 		return creado;
 	}
 	
@@ -150,7 +157,7 @@ public class Juego {
 			if(tablero.containsKey(i)) {
 				
 				Jugador j = (Jugador) tablero.get(i);
-				valores.append(j.getNombre());
+				valores.append(j.getNombre()+" ");
 			}
 		}
 		return valores.toString();
