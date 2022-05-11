@@ -12,7 +12,7 @@ import logicaJuego.Constantes;
 class TestJugador {
 
 	@Test
-	void fuerzaParaLucharElfo() {
+	public void fuerzaParaLucharElfo() {
 		for(int i=0;i<20;i++) {
 			Jugador j= new Jugador(PlayerType.ELFO);
 			assertTrue(j.getFuerzaParaLuchar()>=0&&j.getFuerzaParaLuchar()<=Constantes.ELFO_FUERZA);
@@ -21,7 +21,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void fuerzaParaLucharGuerrero() {
+	public void fuerzaParaLucharGuerrero() {
 		for(int i=0;i<20;i++) {
 			Jugador j= new Jugador(PlayerType.GUERRERO);
 			assertTrue(j.getFuerzaParaLuchar()>=0&&j.getFuerzaParaLuchar()<=Constantes.GUERRERO_FUERZA);
@@ -30,7 +30,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void fuerzaParaLucharMago() {
+	public void fuerzaParaLucharMago() {
 		for(int i=0;i<20;i++) {
 			Jugador j= new Jugador(PlayerType.MAGO);
 			assertTrue(j.getFuerzaParaLuchar()>=0&&j.getFuerzaParaLuchar()<=Constantes.MAGO_FUERZA);
@@ -39,7 +39,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void fuerzaParaLucharOgro() {
+	public void fuerzaParaLucharOgro() {
 		for(int i=0;i<20;i++) {
 			Jugador j= new Jugador(PlayerType.OGRO);
 			assertTrue(j.getFuerzaParaLuchar()>=0&&j.getFuerzaParaLuchar()<=Constantes.OGRO_FUERZA);
@@ -48,7 +48,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void magiaParaLucharElfo() {
+	public void magiaParaLucharElfo() {
 		for(int i=0;i<20;i++) {
 			Jugador j= new Jugador(PlayerType.ELFO);
 			assertTrue(j.getMagiaParaLuchar()>=0&&j.getMagiaParaLuchar()<=Constantes.ELFO_MAGIA);
@@ -57,7 +57,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void magiaParaLucharGuerrero() {
+	public void magiaParaLucharGuerrero() {
 		for(int i=0;i<20;i++) {
 			Jugador j= new Jugador(PlayerType.GUERRERO);
 			assertTrue(j.getMagiaParaLuchar()>=0&&j.getMagiaParaLuchar()<=Constantes.GUERRERO_MAGIA);
@@ -66,7 +66,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void magiaParaLucharMago() {
+	public void magiaParaLucharMago() {
 		for(int i=0;i<20;i++) {
 			Jugador j= new Jugador(PlayerType.MAGO);
 			assertTrue(j.getMagiaParaLuchar()>=0&&j.getMagiaParaLuchar()<=Constantes.MAGO_MAGIA);
@@ -75,7 +75,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void magiaParaLucharOgro() {
+	public void magiaParaLucharOgro() {
 		for(int i=0;i<20;i++) {
 			Jugador j= new Jugador(PlayerType.OGRO);
 			assertTrue(j.getMagiaParaLuchar()>=0&&j.getMagiaParaLuchar()<=Constantes.OGRO_MAGIA);
@@ -84,7 +84,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void velocidadParaLucharElfo() {
+	public void velocidadParaLucharElfo() {
 		for(int i=0;i<20;i++) {
 			Jugador j= new Jugador(PlayerType.ELFO);
 			assertTrue(j.getVelocidadParaLuchar()>=0&&j.getVelocidadParaLuchar()<=Constantes.ELFO_VELOCIDAD);
@@ -93,7 +93,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void velocidadParaLucharGuerrero() {
+	public void velocidadParaLucharGuerrero() {
 		for(int i=0;i<20;i++) {
 			Jugador j= new Jugador(PlayerType.GUERRERO);
 			assertTrue(j.getVelocidadParaLuchar()>=0&&j.getVelocidadParaLuchar()<=Constantes.GUERRERO_VELOCIDAD);
@@ -102,7 +102,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void velocidadParaLucharMago() {
+	public void velocidadParaLucharMago() {
 		for(int i=0;i<20;i++) {
 			Jugador j= new Jugador(PlayerType.MAGO);
 			assertTrue(j.getVelocidadParaLuchar()>=0&&j.getVelocidadParaLuchar()<=Constantes.MAGO_VELOCIDAD);
@@ -111,7 +111,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void velocidadParaLucharOgro() {
+	public void velocidadParaLucharOgro() {
 		for(int i=0;i<20;i++) {
 			Jugador j= new Jugador(PlayerType.OGRO);
 			assertTrue(j.getVelocidadParaLuchar()>=0&&j.getVelocidadParaLuchar()<=Constantes.OGRO_VELOCIDAD);
@@ -120,13 +120,13 @@ class TestJugador {
 	}
 	
 	@Test
-	void mostrarDinero() {
+	public void mostrarDinero() {
 		Jugador j= new Jugador(PlayerType.ELFO);
 		assertEquals(0, j.getDinero());
 	}
 	
 	@Test
-	void introducirDinero() {
+	public void introducirDinero() {
 		Jugador j= new Jugador(PlayerType.ELFO);
 		try {
 			j.setDinero(2);
@@ -139,7 +139,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void introducirDineroFueraLimite() {
+	public void introducirDineroFueraLimite() {
 		Jugador j= new Jugador(PlayerType.ELFO);
 		try {
 			j.setDinero(3);
@@ -150,13 +150,13 @@ class TestJugador {
 	}
 
 	@Test
-	void mostrarPociones() {
+	public void mostrarPociones() {
 		Jugador j= new Jugador(PlayerType.ELFO);
 		assertEquals(0, j.getPociones());
 	}
 	
 	@Test
-	void introducirPociones() {
+	public void introducirPociones() {
 		Jugador j= new Jugador(PlayerType.ELFO);
 		try {
 			j.setPociones(3);
@@ -169,7 +169,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void introducirPocionesFueraLimite() {
+	public void introducirPocionesFueraLimite() {
 		Jugador j= new Jugador(PlayerType.ELFO);
 		try {
 			j.setPociones(4);
@@ -182,13 +182,13 @@ class TestJugador {
 	 * 
 	 */
 	@Test
-	void mostrarGemas() {
+	public void mostrarGemas() {
 		Jugador j= new Jugador(PlayerType.ELFO);
 		assertEquals(0, j.getGemas());
 	}
 	
 	@Test
-	void introducirGemas() {
+	public void introducirGemas() {
 		Jugador j= new Jugador(PlayerType.ELFO);
 		try {
 			j.setGemas(5);
@@ -201,7 +201,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void introducirGemasFueraLimite() {
+	public void introducirGemasFueraLimite() {
 		Jugador j= new Jugador(PlayerType.ELFO);
 		try {
 			j.setGemas(6);
@@ -212,7 +212,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void lucha() {
+	public void lucha() {
 		Jugador j = new Jugador(PlayerType.OGRO);
 		Jugador enemigo = new Jugador(PlayerType.ELFO);
 		for(int i =0;i<20;i++) {
@@ -226,7 +226,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void luchaConPociones() throws JugadorException {
+	public void luchaConPociones() throws JugadorException {
 		
 		for(int i =0;i<20;i++) {//Estan dentro del bucle para que siempre tengan 1 poción los dos
 			Jugador j = new Jugador(PlayerType.OGRO);
@@ -243,7 +243,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void luchaConDinero() throws JugadorException {
+	public void luchaConDinero() throws JugadorException {
 		
 		for(int i =0;i<20;i++) {//Estan dentro del bucle para que siempre tengan 1 poción los dos
 			Jugador j = new Jugador(PlayerType.OGRO);
@@ -260,7 +260,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void rocaConGema() throws JugadorException {
+	public void rocaConGema() throws JugadorException {
 		
 		for(int i =0;i<20;i++) {//Estan dentro del bucle para que siempre tengan 1 poción los dos
 			Jugador j = new Jugador(PlayerType.OGRO);
@@ -275,7 +275,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void rocaSinGema() throws JugadorException {
+	public void rocaSinGema() throws JugadorException {
 		
 		for(int i =0;i<20;i++) {//Estan dentro del bucle para que siempre tengan 1 poción los dos
 			Jugador j = new Jugador(PlayerType.OGRO);
@@ -290,7 +290,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void encuentraDinero() {
+	public void encuentraDinero() {
 		Jugador j = new Jugador(PlayerType.OGRO);
 		try {
 			j.encuentraDinero();
@@ -301,7 +301,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void encuentraPocion() {
+	public void encuentraPocion() {
 		Jugador j = new Jugador(PlayerType.OGRO);
 		try {
 			j.encuentraPocion();
@@ -312,7 +312,7 @@ class TestJugador {
 	}
 	
 	@Test
-	void encuentraGema() {
+	public void encuentraGema() {
 		Jugador j = new Jugador(PlayerType.OGRO);
 		try {
 			j.encuentraGema();;

@@ -40,7 +40,7 @@ public class Jugador extends Element {
 	}
 	public int getVelocidadParaLuchar() {
 		r = new Random();
-		return r.nextInt(player.getVelocidad());
+		return r.nextInt(1,player.getVelocidad());
 		
 	}
 

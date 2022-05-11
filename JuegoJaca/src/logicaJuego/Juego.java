@@ -144,7 +144,7 @@ public class Juego {
 			if(tablero.containsKey(i)) {
 				contador+=1;
 				Jugador j = (Jugador) tablero.get(i);
-				nombres.append("El jugador "+contador+" es un "+j.getNombre());
+				nombres.append("El jugador "+contador+" es un "+j.getNombre()+" ");
 			}
 		}
 		return nombres.toString();
@@ -184,31 +184,32 @@ public class Juego {
 	}
 	private Coordenada getNextPosition (char direccion) throws JuegoException {
 		Coordenada c = coordenadaJugadores.get(jugadorJuega);
-		c.clone();
+		Coordenada nueva = c.clone();
+		
 		if(direccion!='N'&& direccion!='S'&& direccion!='E'&& direccion!='O') {
 			throw new JuegoException("No se aceptan estos valores");
 		}
 		
 		switch (direccion) {
 		case 'N': {
-			c.goUp();
+			nueva.goUp();
 			break;
 		}case 'S': {
-			c.goDown();
+			nueva.goDown();
 			break;
 		}case 'E': {
-			c.goRight();
+			nueva.goRight();
 			break;
 		}case 'O': {
-			c.goLeft();
+			nueva.goLeft();
 			break;
 		}
 		default:
 			throw new JuegoException("Error inesperado");
 		}
-		return c;
+		return nueva;
 	}
-
+//Preguntar en que momento hay que invocar
 	private void cambiaJugadorAPosicion(Coordenada coord) {
 		Coordenada c = coordenadaJugadores.get(jugadorJuega);//Sacamos la coordenada del jugador
 		coordenadaJugadores.remove(jugadorJuega);//Eliminamos la coordenada del jugador
