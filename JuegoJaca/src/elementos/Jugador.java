@@ -130,14 +130,23 @@ public class Jugador extends Element {
 	}
 	
 	public void encuentraDinero() throws JugadorException {
+		if(this.dinero>=Constantes.NUM_DINERO) {
+			throw  new JugadorException("Ya a acumulado todo el dinero");
+		}
 		setDinero(1);
 	}
 	
 	public void encuentraPocion() throws JugadorException {
+		if(this.pocion>=Constantes.NUM_POCIONES) {
+			throw new JugadorException("Ya a acumulado todas las pociones");
+		}
 		setPociones(1);
 	}
 	
 	public void encuentraGema() throws JugadorException {
+		if(this.gemas>=Constantes.NUM_GEMAS) {
+			throw new JugadorException("Ya a acumulado todas las gemas");
+		}
 		setGemas(1);
 	}
 }

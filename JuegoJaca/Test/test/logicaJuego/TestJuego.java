@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import elementos.Jugador;
+import elementos.JugadorException;
 import elementos.PlayerType;
 import logicaJuego.Constantes;
 import logicaJuego.Juego;
@@ -55,6 +56,52 @@ public class TestJuego {
 		
 	}
 	
+	@Test
+	public void proximoJugador() {
+		PlayerType[]jugadores = new PlayerType[Constantes.NUM_JUGADORES]; 
+		jugadores[0]=PlayerType.ELFO;
+		jugadores[1]=PlayerType.MAGO;
+		jugadores[2]=PlayerType.ELFO;
+		jugadores[3]=PlayerType.ELFO;
+		
+		Juego j = new Juego(jugadores);
+		j.proximoJugador();
+		
+		
+		assertEquals("MAGO", j.getNombreJuegadorQueJuega());
+		
+	}
+	public void proximoJugadorReinicio() {
+		PlayerType[]jugadores = new PlayerType[Constantes.NUM_JUGADORES]; 
+		jugadores[0]=PlayerType.ELFO;
+		jugadores[1]=PlayerType.MAGO;
+		jugadores[2]=PlayerType.MAGO;
+		jugadores[3]=PlayerType.MAGO;
+		
+		Juego j = new Juego(jugadores);
+		for(int i=0;i<Constantes.NUM_JUGADORES-1;i++) {
+			j.proximoJugador();
+		}
+		
+		
+		
+		assertEquals("ELFO", j.getNombreJuegadorQueJuega());
+		
+	}
+	@Test
+	public void partidaTerminada() throws JugadorException {//No se como comprobarlo
+		PlayerType[]jugadores = new PlayerType[Constantes.NUM_JUGADORES];
+		
+		jugadores[0]=null;
+		jugadores[1]=null;
+		jugadores[2]=null;
+		jugadores[3]=PlayerType.MAGO;
+		
+		Juego j = new Juego(jugadores);
+		
+		assertTrue(j.isTerminado());//No se acumula el dinero
+		
+	}
 	//No se como comprobar obtenerElementoTablero y obtenerCoordenadaJugadorJuega
 
 }

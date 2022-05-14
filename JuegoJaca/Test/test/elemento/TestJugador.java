@@ -296,7 +296,7 @@ class TestJugador {
 			j.encuentraDinero();
 			assertEquals(1, j.getDinero());
 		} catch (JugadorException e) {
-			
+		
 		}
 	}
 	
@@ -319,6 +319,49 @@ class TestJugador {
 			assertEquals(1, j.getGemas());
 		} catch (JugadorException e) {
 			
+		}
+	}
+	
+	
+	@Test
+	public void encuentraDineroDeMas() {
+		Jugador j = new Jugador(PlayerType.OGRO);
+		try {
+			for(int i=0;i<Constantes.NUM_DINERO+1;i++) {
+				j.encuentraDinero();
+			}
+			
+			fail("Tendria que saltar un error");
+		} catch (JugadorException e) {
+			System.out.println("Limite de dinero alcanzado");
+		}
+	}
+	
+	@Test
+	public void encuentraPocionDeMas() {
+		Jugador j = new Jugador(PlayerType.OGRO);
+		try {
+			for(int i=0;i<Constantes.NUM_POCIONES+1;i++) {
+				j.encuentraPocion();
+			}
+			
+			fail("Tendria que saltar un error");
+		} catch (JugadorException e) {
+			System.out.println("Limite de pociones alcanzado");
+		}
+	}
+	
+	@Test
+	public void encuentraGemaDeMas() {
+		Jugador j = new Jugador(PlayerType.OGRO);
+		try {
+			for(int i=0;i<Constantes.NUM_GEMAS+1;i++) {
+				j.encuentraGema();
+			}
+		
+			fail("Tendria que saltar un error");
+		} catch (JugadorException e) {
+			System.out.println("Limite de gemas alcanzado");
 		}
 	}
 }
