@@ -14,6 +14,9 @@ public class Jugador extends Element {
 	public Jugador(PlayerType player) {
 		super(ElementType.valueOf(player.name()));
 		this.player = player;
+		this.dinero=0;
+		this.pocion=0;
+		this.gemas=0;
 		
 	}
 	
@@ -40,7 +43,7 @@ public class Jugador extends Element {
 	}
 	public int getVelocidadParaLuchar() {
 		r = new Random();
-		return r.nextInt(1,player.getVelocidad());
+		return r.nextInt(player.getVelocidad()-1)+1;
 		
 	}
 
