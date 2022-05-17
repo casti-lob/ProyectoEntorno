@@ -185,7 +185,7 @@ public class Juego {
 	private Coordenada getNextPosition (char direccion) throws JuegoException {
 		Coordenada c = coordenadaJugadores.get(jugadorJuega);
 		Coordenada nueva = c.clone();
-		
+		Coordenada nextPosition;
 		if(direccion!='N'&& direccion!='S'&& direccion!='E'&& direccion!='O') {
 			throw new JuegoException("No se aceptan estos valores");
 		}
@@ -207,13 +207,18 @@ public class Juego {
 		default:
 			throw new JuegoException("Error inesperado");
 		}
-		return nueva;
+		if(nueva.getX()==0&&nueva.getY()==0) {
+			nextPosition=c;
+		}else {
+			nextPosition=nueva;
+		}
+		return nextPosition;
 	}
 //Preguntar en que momento hay que invocar
 	private void cambiaJugadorAPosicion(Coordenada coord) {
 		Coordenada c = coordenadaJugadores.get(jugadorJuega);//Sacamos la coordenada del jugador
 		coordenadaJugadores.remove(jugadorJuega);//Eliminamos la coordenada del jugador
-		coordenadaJugadores.add(jugadorJuega, coord);//Colocamos la nueva coordenada del jugador en su misma posición
+		coordenadaJugadores.add(jugadorJuega, coord);//Colocamos la nueva coordenada del jugador en su misma posiciï¿½n
 		Jugador j = (Jugador) tablero.get(c);//Obtenemos el jugador del mapa
 		tablero.remove(c);//Eliminamos el registro del mapa
 		tablero.put(coord, j);//Introducimos el jugador con la nueva coordenada
@@ -315,7 +320,7 @@ public class Juego {
 	}
 
 	public void proximoJugador() {
-		if(this.jugadorJuega== Constantes.NUM_JUGADORES-1) {
+		if(this.jugadorJuega== coordenadaJugadores.size()-1) {
 			jugadorJuega=0;
 		}else {
 			jugadorJuega+=1;
