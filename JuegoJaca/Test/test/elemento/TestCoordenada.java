@@ -14,10 +14,9 @@ class TestCoordenada {
 		
 			Coordenada c = new Coordenada(10, 0);
 			assertEquals(0, c.getX());
-			
-		
-		
+
 	}
+	
 	@Test
 	public void coordenadaXInferior() {
 		Coordenada c = new Coordenada(-1, 0);
