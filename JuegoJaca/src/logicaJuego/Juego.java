@@ -184,7 +184,7 @@ public class Juego {
 	}
 	private Coordenada getNextPosition (char direccion) throws JuegoException {
 		Coordenada c = coordenadaJugadores.get(jugadorJuega);
-		Coordenada nueva = c.clone();
+		Coordenada nueva = new Coordenada(c.getX(),c.getY());
 		Coordenada nextPosition;
 		if(direccion!='N'&& direccion!='S'&& direccion!='E'&& direccion!='O') {
 			throw new JuegoException("No se aceptan estos valores");
@@ -246,7 +246,7 @@ public class Juego {
 		if (elemento != null) { // Hay algo en la casilla
 			if (elemento instanceof Jugador) {
 
-				Jugador enemigo = (Jugador) elemento;
+				Jugador enemigo = (Jugador) elemento;//
 				int resultadoLucha = jugador.lucha(enemigo);
 				switch (resultadoLucha) {
 				case Constantes.EMPATE:

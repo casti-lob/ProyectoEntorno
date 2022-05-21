@@ -112,13 +112,5 @@ public class Coordenada {
 		return movimiento;
 	}
 	
-	public Coordenada clone()  {
-		Coordenada c = null;
-		
-		c = new Coordenada(this.x,this.y);
-			
-		
-		return c;
-		
-	}
+	
 }

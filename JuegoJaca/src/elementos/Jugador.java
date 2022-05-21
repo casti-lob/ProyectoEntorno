@@ -28,17 +28,17 @@ public class Jugador extends Element {
 		r = new Random();
 		return r.nextInt(player.getFuerza());
 	}
-	private int getFuerza() {
+	private int getFuerza() {//Pide el metodo la documentación
 		return player.getFuerza();
 	}
-	private int getMagia() {
+	private int getMagia() {//Pide el metodo la documentación
 		return player.getMagia();
 	}
 	public int getMagiaParaLuchar() {
 		r= new Random();
 		return r.nextInt(player.getMagia());
 	}
-	private int getVelocidad() {
+	private int getVelocidad() {//Pide el metodo la documentación
 		return player.getVelocidad();
 	}
 	public int getVelocidadParaLuchar() {
@@ -92,6 +92,8 @@ public class Jugador extends Element {
 		int fuerzaJugador= getFuerzaParaLuchar();
 		int fuerzaEnemigo= enemigo.getFuerzaParaLuchar();
 		
+		
+		
 		if(fuerzaJugador==fuerzaEnemigo) {
 			resultado=Constantes.EMPATE;
 			
@@ -101,15 +103,16 @@ public class Jugador extends Element {
 		}else if(fuerzaJugador>fuerzaEnemigo&& enemigo.getDinero()>0) {
 			resultado =Constantes.GANA_DINERO;
 			enemigo.setDinero(-getDinero());
-		}else if(fuerzaJugador>fuerzaEnemigo) {
-			resultado= Constantes.GANA_MUERE;
-			
 		}else if(fuerzaJugador<fuerzaEnemigo&&getPociones()>0) {
 			resultado=Constantes.PIERDE_USA_POCIMA;
 			this.setPociones(-1);
 		}else if(fuerzaJugador<fuerzaEnemigo&& getDinero()>0) {
 			resultado= Constantes.PIERDE_DINERO;
 			this.setDinero(-getDinero());
+			
+		}else if(fuerzaJugador>fuerzaEnemigo) {
+			resultado= Constantes.GANA_MUERE;
+		
 		}else {
 			resultado= Constantes.PIERDE_MUERE;
 			

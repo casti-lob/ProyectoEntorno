@@ -49,8 +49,8 @@ class TestCoordenada {
 	@Test
 	public void clonarCoordenada() {
 		Coordenada c = new Coordenada();
-		Coordenada clon = c.clone();
-		assertNotSame(c, clon);
+		Coordenada nueva = new Coordenada(c.getX(),c.getY());
+		assertNotSame(c, nueva);
 	}
 	
 	@Test
