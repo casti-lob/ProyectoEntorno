@@ -3,10 +3,9 @@ package main;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import elementos.Jugador;
 import elementos.PlayerType;
 import logicaJuego.Constantes;
-import logicaJuego.Juego;
+
 import logicaJuego.JuegoException;
 import logicaJuego.JuegoGUI;
 

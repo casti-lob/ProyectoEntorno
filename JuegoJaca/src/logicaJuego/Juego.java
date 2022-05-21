@@ -18,7 +18,7 @@ public class Juego {
 		tablero= new HashMap<>();
 		coordenadaJugadores = new ArrayList<>();
 		crearTablero();
-		for(int i=0;i< Constantes.NUM_JUGADORES;i++){
+		for(int i=0;i< jugadores.length;i++){
 			crearJugador(jugadores[i]);
 		}
 		
