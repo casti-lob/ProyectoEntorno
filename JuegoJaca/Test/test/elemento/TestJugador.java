@@ -228,7 +228,7 @@ class TestJugador {
 	@Test
 	public void luchaConPociones() throws JugadorException {
 		
-		for(int i =0;i<20;i++) {//Estan dentro del bucle para que siempre tengan 1 poción los dos
+		for(int i =0;i<20;i++) {//Estan dentro del bucle para que siempre tengan 1 pociï¿½n los dos
 			Jugador j = new Jugador(PlayerType.OGRO);
 			Jugador enemigo = new Jugador(PlayerType.ELFO);
 			j.setPociones(1);
@@ -245,7 +245,7 @@ class TestJugador {
 	@Test
 	public void luchaConDinero() throws JugadorException {
 		
-		for(int i =0;i<20;i++) {//Estan dentro del bucle para que siempre tengan 1 poción los dos
+		for(int i =0;i<20;i++) {//Estan dentro del bucle para que siempre tengan 1 pociï¿½n los dos
 			Jugador j = new Jugador(PlayerType.OGRO);
 			Jugador enemigo = new Jugador(PlayerType.ELFO);
 			j.setDinero(1);
@@ -262,7 +262,7 @@ class TestJugador {
 	@Test
 	public void rocaConGema() throws JugadorException {
 		
-		for(int i =0;i<20;i++) {//Estan dentro del bucle para que siempre tengan 1 poción los dos
+		for(int i =0;i<20;i++) {//Estan dentro del bucle para que siempre tengan 1 pociï¿½n los dos
 			Jugador j = new Jugador(PlayerType.OGRO);
 			j.setGemas(1);
 			try {
@@ -277,7 +277,7 @@ class TestJugador {
 	@Test
 	public void rocaSinGema() throws JugadorException {
 		
-		for(int i =0;i<20;i++) {//Estan dentro del bucle para que siempre tengan 1 poción los dos
+		for(int i =0;i<20;i++) {//Estan dentro del bucle para que siempre tengan 1 pociï¿½n los dos
 			Jugador j = new Jugador(PlayerType.OGRO);
 			
 			try {
